@@ -20,7 +20,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [self-hosted, chart-runner]
+    runs-on: self-hosted
     steps:
       - name: Pull image from docker hubs
         run: docker pull noufalkv/tradingr-chart:latest
