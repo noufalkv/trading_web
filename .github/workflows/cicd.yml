@@ -20,11 +20,17 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: [self-hosted, chart-runner]
     steps:
       - name: Pull image from docker hub
         run: docker pull noufalkv/tradingr-chart:latest
-      - name: Delete old container
-        run: docker rm -f reactjs-app-container || true
+      - name: Stop and remove old container
+        run: |
+          docker stop reactjs-app-container || true
+          docker rm reactjs-app-container || true
+      - name: Clean up unused containers and images
+        run: |
+          docker container prune -f
+          docker image prune -f
       - name: Run Docker Container
         run: docker run -d -p 3000:80 --name reactjs-app-container noufalkv/tradingr-chart:latest
