@@ -63,7 +63,7 @@ function App() {
       timeVisible: true,
     });
 
-    const socket = io("http://localhost:4000", {
+    const socket = io(process.env.REACT_APP_SERVER_BASE_URL || "http://localhost:4000", {
       withCredentials: true,
       extraHeaders: {
         access_token:token
