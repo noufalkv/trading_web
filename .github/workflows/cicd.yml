@@ -22,7 +22,7 @@ jobs:
     needs: build
     runs-on: [self-hosted, chart-runner]
     steps:
-      - name: Pull image from docker hub
+      - name: Pull image from docker hubs
         run: docker pull noufalkv/tradingr-chart:latest
       - name: Stop and remove old container
         run: |
