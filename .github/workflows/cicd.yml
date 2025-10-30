@@ -23,18 +23,18 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hubs
-        run: docker pull noufalkv/tradingr-chart:latest
+        run: sudo docker pull noufalkv/tradingr-chart:latest
       - name: Stop and remove old container
         run: |
-          docker stop reactjs-app-container || true
-          docker rm reactjs-app-container || true
+          sudo docker stop reactjs-app-container || true
+          sudo docker rm reactjs-app-container || true
       - name: Stop all containers using port 3001
         run: |
-          docker ps -q --filter "publish=3001" | xargs -r docker stop || true
-          docker ps -aq --filter "publish=3001" | xargs -r docker rm || true
+          sudo docker ps -q --filter "publish=3001" | xargs -r sudo docker stop || true
+          sudo docker ps -aq --filter "publish=3001" | xargs -r sudo docker rm || true
       - name: Clean up unused containers and images
         run: |
-          docker container prune -f
-          docker image prune -f
+          sudo docker container prune -f
+          sudo docker image prune -f
       - name: Run Docker Container
-        run: docker run -d -p 3001:80 --name reactjs-app-container noufalkv/tradingr-chart:latest
+        run: sudo docker run -d -p 3001:80 --name reactjs-app-container noufalkv/tradingr-chart:latest
