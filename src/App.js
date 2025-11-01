@@ -64,7 +64,7 @@ function App() {
     });
 
     // const socket = io(process.env.REACT_APP_SERVER_BASE_URL || "http://localhost:4000", {
-    const socket = io("http://3.101.106.53:4000", {
+    const socket = io("http://18.144.45.12:4000", {
       withCredentials: true,
       extraHeaders: {
         access_token:token
